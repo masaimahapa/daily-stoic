@@ -21,6 +21,17 @@ app.get("/api/posts", async (req: Request, res:Response) => {
     }
 })
 
+app.get("/api/posts/:postId", async (req: Request, res:Response) => {
+    const postId = req.params.postId;
+    try{
+        console.log("getting post with id: ", postId);
+        const response = await axios.get(`${API_URL}/posts/${postId}`);
+        res.json(response.data);
+    } catch(error){
+        res.status(500).json({ error: "Unable to fetch posts."})
+    }
+})
+
 app.listen(port, ()=>{
     console.log(`Server running on port ${port}`);
 })

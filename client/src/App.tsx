@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-interface Post{
-  id: number;
-  title: string;
-  body: string;
-}
+import { Post } from './interfaces/post';
+
+
+
 function App() {
   const [posts, setPosts] = useState<Post[]>([]);
 
