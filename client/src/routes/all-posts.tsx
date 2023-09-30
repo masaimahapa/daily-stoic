@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 
-type Props = {}
-
 async function getPosts(){
     return fetch('/api/posts', {
         method: 'GET',
@@ -18,7 +16,7 @@ export async function loader(){
     return {posts};
 }
 
-export default function AllPosts({}: Props) {
+export default function AllPosts() {
     const {posts: allPosts} = useLoaderData();
     const [searchTerm, setSearchTerm] = useState('');
     const [posts, setPosts] = useState(allPosts);
@@ -46,8 +44,6 @@ export default function AllPosts({}: Props) {
             <div className="flex flex-col space-y-6 w-full max-w-2xl border rounded-xl divide-y">
                 {posts.map((post) => (
                     <Link to={`/posts/${post.id}`} key={post.id} className="flex items-start py-4 px-6 hover:bg-gray-50">
-                        {/* Optional avatar */}
-                        {/* <img src={post.user.avatar} alt="User avatar" className="rounded-full w-12 h-12 mr-4" /> */}
                         <div className="flex-grow">
                             <h2 className="text-xl font-semibold mb-2">{post.title}</h2>
                             <p className="text-gray-700">{post.body}</p>

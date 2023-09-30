@@ -1,19 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
 import './index.css'
-import { Route, RouterProvider, createBrowserRouter } from 'react-router-dom'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Home from './routes/home.tsx'
 import ErrorPage from './routes/error-page.tsx'
 import BlogPost, {loader as PostLoader} from './routes/post.tsx'
 import AllPosts, {loader as allPostsLoader} from './routes/all-posts.tsx'
 import Layout from './components/Layout/layout.tsx'
-import CreatePostForm from './routes/new-post.tsx'
 import NewPostPage from './routes/new-post.tsx'
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import UserProfile, {loader as userProfileLoader} from './routes/user-profile.tsx'
+import AllUsers, {loader as allUserLoader} from './routes/all-users.tsx'
+import EditPostPage from './routes/edit-post.tsx'
 
 const router = createBrowserRouter([
   {
@@ -37,6 +37,11 @@ const router = createBrowserRouter([
         loader: PostLoader
       },
       {
+        path: "posts/:postId/edit",
+        element: <EditPostPage />, 
+        loader: PostLoader
+      },
+      {
         path: "new-post",
         element: <NewPostPage />
       },
@@ -44,7 +49,12 @@ const router = createBrowserRouter([
         path: "/users/:userId",
         element: <UserProfile />,
         loader: userProfileLoader
-      }
+      },
+      {
+        path: "/all-users",
+        element: <AllUsers />,
+        loader: allUserLoader
+      },
     ]
   },
 

@@ -1,4 +1,3 @@
-// NewPostPage.tsx
 import React from 'react';
 import CreatePostForm from '../components/forms/create-post-form';
 

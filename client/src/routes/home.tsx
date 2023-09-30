@@ -1,9 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-type Props = {}
-
-export default function Home({}: Props) {
+export default function Home() {
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col justify-center items-center">
     <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-md">

@@ -2,9 +2,8 @@ import React from 'react'
 import Header from '../header/header'
 import { Outlet } from 'react-router-dom'
 
-type Props = {}
 
-export default function Layout({}: Props) {
+export default function Layout() {
   return (
     <div>
         <Header />
