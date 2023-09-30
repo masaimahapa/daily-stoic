@@ -34,3 +34,12 @@ Make sure to set up the necessary environment variables in a .env file in the se
 ```
 PORT=your_preferred_port
 ```
+
+## Running Tests
+Before running the tests, make sure you have installed the test dependencies (jest, supertest, and their types). If you've followed the installation step above, these should already be installed.
+
+Run the following command in the server directory
+```
+npm test
+```
+This will run the test suites for the server, and display the results in the terminal.

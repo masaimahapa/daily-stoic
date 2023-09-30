@@ -32,3 +32,12 @@ npm run client
 ```
 npm run watch
 ```
+
+## Running Tests
+Before running the tests, make sure you have installed the test dependencies (jest, supertest, and their types). If you've followed the installation step above, these should already be installed.
+
+Run the following command in the parent folder
+```
+npm test
+```
+This will run the test suites for the server, and display the results in the terminal.
