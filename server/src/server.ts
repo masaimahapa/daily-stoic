@@ -1,6 +1,5 @@
 import express, {Express, Request, Response} from "express";
 import dotenv from "dotenv";
-import axios from "axios";
 
 import { commentsRouter } from "./routes/comments/comments.router";
 import { postsRouter } from "./routes/posts/posts.router";
