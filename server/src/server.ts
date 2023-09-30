@@ -2,46 +2,37 @@ import express, {Express, Request, Response} from "express";
 import dotenv from "dotenv";
 import axios from "axios";
 
+import { commentsRouter } from "./routes/comments/comments.router";
+import { postsRouter } from "./routes/posts/posts.router";
+
 dotenv.config();
 
 const app: Express = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 8000;
 
 app.use(express.json())
 
+app.use("/api", commentsRouter);
+app.use("/api", postsRouter);
+
 const API_URL = 'https://jsonplaceholder.typicode.com';
 
-app.get("/api/posts", async (req: Request, res:Response) => {
-    try{
-        console.log("request made to /posts");
-        console.log(req.query);
-        const {userId} = req.query;
-        let apiURL = `${API_URL}/posts`;
-        if(userId){
-            apiURL += `?userId=${userId}`;
-        }
-        const response = await axios.get(apiURL);
-        res.json(response.data);
-    } catch(error){
-        res.status(500).json({ error: "Unable to fetch posts."})
-    }
-})
+// app.get("/api/posts", async (req: Request, res:Response) => {
+//     try{
+//         console.log("request made to /posts");
+//         console.log(req.query);
+//         const {userId} = req.query;
+//         let apiURL = `${API_URL}/posts`;
+//         if(userId){
+//             apiURL += `?userId=${userId}`;
+//         }
+//         const response = await axios.get(apiURL);
+//         res.json(response.data);
+//     } catch(error){
+//         res.status(500).json({ error: "Unable to fetch posts."})
+//     }
+// })
 
-app.get("/api/comments", async (req: Request, res:Response) => {
-    try{
-        console.log("request made to /comments");
-        console.log(req.query);
-        const {userId} = req.query;
-        let apiURL = `${API_URL}/posts`;
-        if(userId){
-            apiURL += `?userId=${userId}`;
-        }
-        const response = await axios.get(apiURL);
-        res.json(response.data);
-    } catch(error){
-        res.status(500).json({ error: "Unable to fetch posts."})
-    }
-})
 
 app.get("/api/users", async (req: Request, res:Response) => {
     try{
@@ -115,19 +106,6 @@ app.delete("/api/posts/:postId", async (req: Request, res:Response) =>{
     } catch (error){
         console.error("Error deleting post: ", error);
         res.status(500).json({error: "Unable to delete the post."})
-    }
-})
-
-app.get("/api/posts/:userId/comments", async (req: Request, res: Response) => {
-    const userId = req.params.userId;
-
-    try{
-        console.log("getting comments for user with id: ", userId);
-        const response = await axios.get(`${API_URL}/posts/${userId}/comments`);
-        res.json(response.data);
-    } catch(error){
-        console.error("Error getting comments: ", error);
-        res.status(500).json({error: "Unable to get comments."})
     }
 })
 
